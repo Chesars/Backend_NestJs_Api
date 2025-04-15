@@ -22,78 +22,172 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# Backend NestJS API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a backend API built using the [NestJS](https://nestjs.com/) framework. It provides a robust and scalable server-side application for managing users, products, orders, categories, and more. The API is designed with modularity, security, and extensibility in mind.
 
-## Project setup
+## Features
+
+- **User Management**: Create, update, delete, and retrieve user information.
+- **Product Management**: Manage products with categories, stock, and images.
+- **Order Management**: Handle orders with associated details and users.
+- **Category Management**: Organize products into categories.
+- **Authentication and Authorization**: Secure endpoints with JWT-based authentication and role-based access control.
+- **Cloudinary Integration**: Upload and manage product images using Cloudinary.
+- **Swagger Documentation**: Interactive API documentation with Swagger.
+- **Database Integration**: PostgreSQL database with TypeORM for ORM.
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) (v20.18.0 or higher)
+- [PostgreSQL](https://www.postgresql.org/) (configured in `.env` file)
+- [Docker](https://www.docker.com/) (optional, for containerized setup)
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd Backend_NestJs_Api/back
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   - Create a `.env.development` file in the root directory.
+   - Add the following variables:
+     ```
+     DB_HOST=localhost
+     DB_PORT=5432
+     DB_USERNAME=your_db_username
+     DB_PASSWORD=your_db_password
+     DB_NAME=your_db_name
+     JWT_SECRET=your_jwt_secret
+     CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+     CLOUDINARY_API_KEY=your_cloudinary_api_key
+     CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+     ```
+
+4. Run database migrations (if applicable):
+   ```bash
+   npm run typeorm migration:run
+   ```
+
+## Running the Application
+
+### Development Mode
 
 ```bash
-$ npm install
+npm run start:dev
 ```
 
-## Compile and run the project
+The application will run on `http://localhost:3000`.
 
+### Production Mode
+
+1. Build the application:
+   ```bash
+   npm run build
+   ```
+
+2. Start the application:
+   ```bash
+   npm run start:prod
+   ```
+
+### Using Docker
+
+1. Build and start the containers:
+   ```bash
+   docker-compose up --build
+   ```
+
+2. The application will be available at `http://localhost:3001`.
+
+## API Documentation
+
+The API is documented using Swagger. Once the application is running, you can access the documentation at:
+
+```
+http://localhost:3000/api
+```
+
+## Testing
+
+### Unit Tests
+
+Run unit tests:
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run test
 ```
 
-## Run tests
+### End-to-End Tests
 
+Run e2e tests:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run test:e2e
 ```
+
+### Test Coverage
+
+Generate test coverage report:
+```bash
+npm run test:cov
+```
+
+## Project Structure
+
+- **`src/modules`**: Contains feature modules (e.g., users, products, orders).
+- **`src/helpers`**: Utility functions and services.
+- **`src/migrations`**: Database migration files.
+- **`src/main.ts`**: Application entry point.
+- **`test`**: Contains e2e test files.
 
 ## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+For deployment, ensure the following:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+1. Set `NODE_ENV=production` in your environment variables.
+2. Use a production-ready database (e.g., AWS RDS, Azure Database).
+3. Build the application:
+   ```bash
+   npm run build
+   ```
+4. Start the application:
+   ```bash
+   npm run start:prod
+   ```
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+## Contributing
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Contributions are welcome! Please follow these steps:
 
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For questions or support, please contact:
+
+- **Author**: [Your Name]
+- **Email**: [Your Email]
+- **Website**: [Your Website]
